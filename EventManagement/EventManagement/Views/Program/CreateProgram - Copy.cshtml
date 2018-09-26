@@ -1,0 +1,39 @@
+﻿
+@model EventManagement.Models.DTO.ProgramView
+
+@using (Ajax.BeginForm("PartialProgramWebGrid", "Program", FormMethod.Post, new AjaxOptions()
+{
+    HttpMethod = "GET",
+    AllowCache = false,
+    InsertionMode = InsertionMode.InsertBefore,
+    UpdateTargetId = "posts-wrapper"
+}))
+{
+    <div>
+        <p>
+            <span>@Html.LabelFor(m => m.Name)</span>
+            <span>@Html.TextBoxFor(m => m.Name)</span>
+            <span>@Html.ValidationMessageFor(m => m.Name)</span>
+        </p>
+        <p>
+            <span>@Html.LabelFor(m => m.Product)</span>
+            <span>@Html.TextBoxFor(m => m.Product)</span>
+            <span>@Html.ValidationMessageFor(m => m.Product)</span>
+        </p>
+        <p>
+            <input type ="Submit" value="Submit"/>
+            @*@Ajax.ActionLink("Load More Posts", "PartialProgramWebGrid", new AjaxOptions()
+                                                                             {
+                                                                                 HttpMethod = "GET",
+                                                                                 AllowCache = false,
+                                                                                 InsertionMode = InsertionMode.InsertAfter,
+                                                                                 UpdateTargetId = "posts-wrapper"
+                                                                             })*@
+        </p>
+    </div>
+
+
+    <div id="posts-wrapper"></div>
+}
+
+

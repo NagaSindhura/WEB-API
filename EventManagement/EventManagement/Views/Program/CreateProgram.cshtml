@@ -1,0 +1,63 @@
+﻿
+@model List<EventManagement.Models.DTO.ProgramView>
+
+
+@using (Ajax.BeginForm("CreateProgram", "Program",new AjaxOptions
+{
+    //HttpMethod = "POST",
+    UpdateTargetId = "ProgramsGrid"
+                ,
+    InsertionMode = InsertionMode.Replace
+                ,
+    Url = Url.Action("CreateProgram")
+
+}))
+{
+    <div>
+        <div>
+            <table>
+                <tr>
+                    <td>@Html.Label("ProgramID")</td>
+                    <td>@Html.TextBox("ProgramID")</td>
+                    <td>@Html.ValidationMessage("ProgramID")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Name")</td>
+                    <td>@Html.TextBox("Name")</td>
+                    <td>@Html.ValidationMessage("Name")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Product")</td>
+                    <td>@Html.TextBox("Product")</td>
+                    <td>@Html.ValidationMessage("Product")</td>
+                </tr>
+
+
+            </table>
+        </div>
+        <div>
+            <input type="Submit" value="Submit" />
+        </div>
+    </div>
+    <br/>
+    <div id="ProgramsGrid">
+        @Html.Partial("Shared/_ProgramWebGrid", Model)
+    </div>
+}
+
+
+<script type="text/javascript">
+    function DeleteMeeting() {
+        debugger;
+
+        if (confirm("Are you sure that you want to delete this meeting?" == true)) {
+            return true;
+        }
+
+        return false;
+    }
+
+</script>
+
+
+

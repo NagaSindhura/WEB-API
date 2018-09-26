@@ -1,0 +1,22 @@
+﻿@model EventManagement.Models.DTO.UserView
+
+@using (Html.BeginForm("LogIn", "Account", FormMethod.Post, new AjaxOptions { UpdateTargetId = "ErrorMessage" }))
+{<div style=" background-color: white;overflow:auto;border: 1px">
+        <div>
+            <div> Login to Your Account</div>
+            <div>
+                @Html.TextBoxFor(m => m.username, new { placeholder = "Username" })
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.password, new { placeholder = "Password" })
+            </div>
+        </div>
+        <span id="ErrorMessage"></span>
+        <input id ="LoginBtn" type="Submit" />
+    </div>
+}
+
+<script type="text/javascript">
+    $('#LoginBtn').click
+
+</script>

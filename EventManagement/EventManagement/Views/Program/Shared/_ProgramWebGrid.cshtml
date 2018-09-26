@@ -1,0 +1,39 @@
+﻿@using System.Web.UI.WebControls
+@*@model EventManagement.Models.DTO.ProgramView*@
+
+@model List<EventManagement.Models.DTO.ProgramView>
+
+@{
+    var ProgramWebGrid = new WebGrid(Model, canPage: true, rowsPerPage: 5, ajaxUpdateContainerId: "gridContent");
+
+    ProgramWebGrid.Pager(WebGridPagerModes.NextPrevious);
+
+    <div id="gridContent">
+        @ProgramWebGrid.GetHtml(
+
+        columns: ProgramWebGrid.Columns(
+        ProgramWebGrid.Column("ProgramID", "Program ID"),
+        ProgramWebGrid.Column("Name", "Program Name"),
+        ProgramWebGrid.Column("Product", "Product Name")
+        ,
+        ProgramWebGrid.Column("View", format: (item) => Html.ActionLink("View", "View", new { ProgramID = item.ProgramID }
+            )),
+        ProgramWebGrid.Column("Edit", format: (item) => Html.ActionLink("Edit", "Edit", new { ProgramID = item.ProgramID })),
+        ProgramWebGrid.Column("Delete", format: (item) => Html.ActionLink("Delete", "DeleteProgram", new { ProgramID = item.ProgramID }
+                ,
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "ProgramsGrid"
+                            ,
+                            OnBegin = "beforedelete",
+                            Url = "Edit",
+                            InsertionMode = InsertionMode.Replace
+
+                        }
+
+                ))
+
+        )
+        )
+    </div>
+}
